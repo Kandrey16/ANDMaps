@@ -1,0 +1,19 @@
+.closed {
+  transform: translateY(calc(100% - 140px));
+}
+
+.open {
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .closed,
+  .open {
+    transform: none !important;
+    position: relative;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
