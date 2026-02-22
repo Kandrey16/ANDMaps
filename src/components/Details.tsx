@@ -4,7 +4,7 @@ import { RoutesHistory } from './RoutesHistory'
 
 export const Details = () => {
 	return (
-		<div className='py-4 rounded shadow space-y-4'>
+		<div className='py-4 space-y-4'>
 			<RoutesList />
 			<RouteInfoSection />
 			<RoutesHistory />

@@ -16,7 +16,7 @@ export const RouteInfoSection = () => {
 	return (
 		<div className='mt-4'>
 			<button
-				className='flex items-center gap-2 text-sm font-medium hover:text-blue-400'
+				className='flex items-center gap-2 text-sm font-medium hover:text-[--accent]'
 				onClick={() => setOpen(!open)}
 			>
 				<span>Подробнее о маршруте</span>
@@ -24,7 +24,7 @@ export const RouteInfoSection = () => {
 			</button>
 
 			{open && (
-				<RouteInfo data={legs} isOpen={true} onClose={() => setOpen(false)} />
+				<RouteInfo data={legs} isOpen={open} onClose={() => setOpen(false)} />
 			)}
 		</div>
 	)

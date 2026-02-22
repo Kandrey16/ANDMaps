@@ -17,13 +17,16 @@ export const RoutesList = () => {
 	const { routes, activeRouteId, setActiveRoute } = useRouteStore()
 
 	return (
-		<div className='space-y-2'>
+		<div className='space-y-2 rounded-xl shadow-lg'>
 			{routes.map((cur) => (
 				<div
 					key={cur.id}
-					className={`p-3 rounded cursor-pointer transition-colors ${
-						cur.id === activeRouteId ? 'bg-[#404040]' : ''
-					}`}
+					className={`p-3 rounded cursor-pointer transition-colors 
+						${
+							cur.id === activeRouteId
+								? 'bg-[--bg-secondary] border-l-4 border-(--accent)'
+								: 'hover:bg-[--bg-secondary]/50'
+						}`}
 					onClick={() => setActiveRoute(cur.id)}
 				>
 					<div className='flex flex-row justify-between items-center gap-2'>

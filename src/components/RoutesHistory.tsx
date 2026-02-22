@@ -41,10 +41,10 @@ export const RoutesHistory = () => {
 							{historyPoints.map((his, i) => (
 								<div
 									key={i}
-									className='flex items-center justify-between px-3 py-2.5 bg-gray-900/50 hover:bg-gray-900 rounded-lg cursor-pointer transition-colors group'
+									className='flex items-center justify-between px-3 py-2.5 bg-[--bg-secondary] hover:[--bg-secondary] rounded-lg cursor-pointer transition-colors group'
 									onClick={() => selectHistoryRoute(his)}
 								>
-									<span className='text-sm text-gray-200 truncate flex-1 pr-2'>
+									<span className='text-sm truncate flex-1 pr-2'>
 										{his}
 									</span>
 									<X

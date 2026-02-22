@@ -4,6 +4,7 @@ import { Details } from '../Details'
 import { NavbarForm } from '../NavbarForm'
 import styles from './Navbar.module.scss'
 import { useTheme } from '../../hooks/useTheme'
+import { Moon, Sun } from 'lucide-react'
 
 export const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -12,8 +13,9 @@ export const Navbar = () => {
 	return (
 		<div
 			className={`
-        fixed bottom-0 left-0 right-0 z-50 bg-white/90
-        dark:bg-black/90 shadow-2xl rounded-t-3xl
+        fixed bottom-0 left-0 right-0 z-50
+				bg-(--bg-primary)
+				shadow-2xl rounded-t-3xl
         transition-transform duration-300 ease-in-out
         ${isOpen ? styles.open : styles.closed}
       `}
@@ -27,11 +29,9 @@ export const Navbar = () => {
 
 			<div className='px-4 pb-6 max-h-[85vh] overflow-y-auto'>
 				<div className='flex flex-row justify-between'>
-					<h1 className='text-2xl font-bold py-3 dark:text-white text-black'>
-						ANDMaps
-					</h1>
+					<h1 className='text-2xl font-bold py-3'>ANDMaps</h1>
 					<button onClick={toggleTheme}>
-						{theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+						{theme === 'light' ? <Moon /> : <Sun />}
 					</button>
 				</div>
 				<NavbarForm />
