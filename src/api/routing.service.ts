@@ -1,6 +1,7 @@
 import type { LngLat } from '@yandex/ymaps3-types'
 import axios from 'axios'
 import type { OSRMResponse, RouteProfile, Route } from '../types/route.type'
+import { countRealDuration } from '../utils/countRealDistation'
 
 export async function fetchRoute(
 	start: LngLat,
@@ -26,7 +27,11 @@ export async function fetchRoute(
 
 		if (!routes.length) return null
 
-		return routes
+		// return routes
+		return routes.map((route) => ({
+			...route,
+			duration: countRealDuration(route.distance, profile),
+		}))
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
 			console.error('OSRM error: ', error.response?.data)

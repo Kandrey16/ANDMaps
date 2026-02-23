@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
 import { YMapMarker } from '../lib/ymaps'
 import type { LngLat } from '@yandex/ymaps3-types'
-import car from '../assets/car.png'
 
 type AnimatedCarProps = {
 	coordinates: LngLat[]
 	duration: number
+	img: string
 }
 //Вычисление расстояния между между двумя точками
 function distance(a: LngLat, b: LngLat) {
@@ -14,7 +14,11 @@ function distance(a: LngLat, b: LngLat) {
 	return Math.sqrt(dx * dx + dy * dy)
 }
 
-export const AnimatedCar = ({ coordinates, duration }: AnimatedCarProps) => {
+export const AnimatedObject = ({
+	coordinates,
+	duration,
+	img,
+}: AnimatedCarProps) => {
 	//текущее положение машины
 	const [position, setPosition] = useState<LngLat | null>(null)
 	//хранит id requestAnimationFrame
@@ -125,7 +129,7 @@ export const AnimatedCar = ({ coordinates, duration }: AnimatedCarProps) => {
 				}}
 			>
 				<img
-					src={car}
+					src={img}
 					alt='car'
 					style={{
 						width: '100%',

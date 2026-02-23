@@ -98,7 +98,9 @@ export const NavbarForm = () => {
 		setDraftPointB(pointB)
 		setHistoryPoints(inputA, inputB)
 
-		buildRoute(pointA, pointB, RouteProfile.DRIVING)
+		Object.values(RouteProfile).forEach((profile) => {
+			buildRoute(pointA, pointB, profile)
+		})
 	}
 
 	return (

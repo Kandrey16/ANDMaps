@@ -113,6 +113,8 @@ export const useRouteStore = create<RouteStore>()(
 			setError: (message) => set({ error: message }),
 
 			buildRoute: async (pointA, pointB, profile) => {
+				get().clearRoutes()
+
 				if (!pointA || !pointB) {
 					set({ error: 'Points are not found' })
 					return
@@ -143,6 +145,8 @@ export const useRouteStore = create<RouteStore>()(
 						legs: r.legs,
 						createdAt: Date.now(),
 					}))
+
+					newRoutes.sort((a, b) => a.duration - b.duration)
 
 					newRoutes.forEach((r) => {
 						get().addRoute(r)
