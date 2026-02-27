@@ -27,7 +27,6 @@ export async function fetchRoute(
 
 		if (!routes.length) return null
 
-		// return routes
 		return routes.map((route) => ({
 			...route,
 			duration: countRealDuration(route.distance, profile),

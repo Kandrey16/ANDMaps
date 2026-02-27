@@ -1,5 +1,5 @@
 // HistoryRoutes.tsx
-import { useRouteStore } from '../store/route.store'
+import { useRouteStore } from '../../store/route.store'
 import { useState } from 'react'
 import { ChevronsDown, ChevronsUp, History, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -44,9 +44,7 @@ export const RoutesHistory = () => {
 									className='flex items-center justify-between px-3 py-2.5 bg-[--bg-secondary] hover:[--bg-secondary] rounded-lg cursor-pointer transition-colors group'
 									onClick={() => selectHistoryRoute(his)}
 								>
-									<span className='text-sm truncate flex-1 pr-2'>
-										{his}
-									</span>
+									<span className='text-sm truncate flex-1 pr-2'>{his}</span>
 									<X
 										size={16}
 										className='text-gray-500 hover:text-red-400 opacity-70 group-hover:opacity-100 transition-opacity shrink-0'

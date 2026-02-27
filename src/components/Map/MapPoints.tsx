@@ -1,14 +1,13 @@
-import { YMapMarker, YMapFeature } from '../lib/ymaps'
-import { useRouteStore } from '../store/route.store'
-import marker_start from '../assets/marker_start.svg'
-import marker_finish from '../assets/marker_finish.svg'
-import { AnimatedObject } from './AnimatedObject'
-import { DEFAULT_CAR_ANIMATION_DURATION } from '../config/map.config'
-import { getIconByProfile } from '../utils/getIconByProfile'
+import { YMapMarker, YMapFeature } from '../../lib/ymaps'
+import { useRouteStore } from '../../store/route.store'
+import marker_start from '../../assets/marker_start.svg'
+import marker_finish from '../../assets/marker_finish.svg'
+import { AnimatedObject } from '../common/AnimatedObject'
+import { DEFAULT_CAR_ANIMATION_DURATION } from '../../config/map.config'
+import { getIconByProfile } from '../../utils/getIconByProfile'
 
 export default function MapPoints() {
 	const { draftPointA, draftPointB, routes, activeRouteId } = useRouteStore()
-	console.log('routes', routes)
 
 	return (
 		<>

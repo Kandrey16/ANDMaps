@@ -1,5 +1,4 @@
-import './App.css'
-import Map from './components/Map'
+import Map from './components/Map/Map'
 import { Navbar } from './components/Navbar/Navbar'
 
 export default function App() {

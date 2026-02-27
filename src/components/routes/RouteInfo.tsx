@@ -1,6 +1,6 @@
 import { X } from 'lucide-react'
-import type { RouteLegs } from '../types/route.type'
-import { useRouteStore } from '../store/route.store'
+import type { RouteLegs } from '../../types/route.type'
+import { useRouteStore } from '../../store/route.store'
 import type { LngLat } from '@yandex/ymaps3-types'
 import { useState } from 'react'
 import clsx from 'clsx'

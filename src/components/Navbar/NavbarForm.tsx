@@ -1,17 +1,18 @@
 import { useForm } from 'react-hook-form'
-import { useRouteStore } from '../store/route.store'
-import { RouteProfile } from '../types/route.type'
-import { parseCoordinates } from '../utils/parseCoordinates'
-import { geocode } from '../api/geocode.service'
+import { useRouteStore } from '../../store/route.store'
+import { RouteProfile } from '../../types/route.type'
+import { parseCoordinates } from '../../utils/parseCoordinates'
+import { geocode } from '../../api/geocode.service'
 import type { LngLat } from '@yandex/ymaps3-types'
-import { detectInputType } from '../utils/detectInputType'
+import { detectInputType } from '../../utils/detectInputType'
 import marker_start from '../assets/marker_start.svg'
 import marker_finish from '../assets/marker_finish.svg'
 import { CircleQuestionMark, Route } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Answer, AnswerVariant } from './Answer'
+import { Answer } from '../common/Answer'
 import { motion } from 'framer-motion'
-import { getCurrentPosition } from '../utils/getCurrentPosition'
+import { getCurrentPosition } from '../../utils/getCurrentPosition'
+import { AnswerVariant } from '../../types/answers'
 
 type FormData = {
 	pointA: string
@@ -47,11 +48,11 @@ export const NavbarForm = () => {
 
 	useEffect(() => {
 		setValue('pointA', lastInputA)
-	}, [lastInputA])
+	}, [lastInputA, setValue])
 
 	useEffect(() => {
 		setValue('pointB', lastInputB)
-	}, [lastInputB])
+	}, [lastInputB, setValue])
 
 	const getPosition = async () => {
 		const coordsString = await getCurrentPosition()
@@ -126,6 +127,7 @@ export const NavbarForm = () => {
 
 					<CircleQuestionMark onClick={() => setOpenA(!openA)} />
 				</div>
+
 				{errors.pointA && (
 					<p className='text-red-500 text-sm'>{errors.pointA.message}</p>
 				)}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from 'react'
-import { YMapMarker } from '../lib/ymaps'
+import { YMapMarker } from '../../lib/ymaps'
 import type { LngLat } from '@yandex/ymaps3-types'
 
 type AnimatedCarProps = {
@@ -20,7 +20,7 @@ export const AnimatedObject = ({
 	img,
 }: AnimatedCarProps) => {
 	//текущее положение машины
-	const [position, setPosition] = useState<LngLat | null>(null)
+	const [position, setPosition] = useState<LngLat | null>(coordinates[0])
 	//хранит id requestAnimationFrame
 	const animationRef = useRef<number | null>(null)
 	//хранит timestamp старта анимации
@@ -55,8 +55,6 @@ export const AnimatedObject = ({
 	useEffect(() => {
 		if (!routeMeta) return
 
-		//стартовая позиция
-		setPosition(coordinates[0])
 		//стартовое время
 		startRef.current = null
 
@@ -113,7 +111,7 @@ export const AnimatedObject = ({
 				cancelAnimationFrame(animationRef.current)
 			}
 		}
-	}, [routeMeta, duration])
+	}, [routeMeta, duration, coordinates])
 
 	if (!position) return null
 

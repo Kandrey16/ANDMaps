@@ -151,7 +151,7 @@ export const useRouteStore = create<RouteStore>()(
 					newRoutes.forEach((r) => {
 						get().addRoute(r)
 					})
-				} catch (error) {
+				} catch {
 					set({ error: 'Routing loading failed' })
 				} finally {
 					set({ isLoading: false })

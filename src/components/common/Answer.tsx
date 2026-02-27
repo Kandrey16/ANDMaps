@@ -1,9 +1,5 @@
 import { motion } from 'framer-motion'
-
-export enum AnswerVariant {
-	A = 'Нажмите на маркер, чтобы определить свое местоположение',
-	B = 'Нажмите на маркер, чтобы выбрать место работы',
-}
+import type { AnswerVariant } from '../../types/answers'
 
 type AnswerProps = {
 	variant: AnswerVariant

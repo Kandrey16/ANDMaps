@@ -1,6 +1,6 @@
 // RoutesList.tsx
 import clsx from 'clsx'
-import { useRouteStore } from '../store/route.store'
+import { useRouteStore } from '../../store/route.store'
 
 type Profile = 'driving' | 'walking' | 'cycling'
 

@@ -2,8 +2,8 @@ import {
 	YMap,
 	YMapDefaultSchemeLayer,
 	YMapDefaultFeaturesLayer,
-} from '../lib/ymaps'
-import { useRouteStore } from '../store/route.store'
+} from '../../lib/ymaps'
+import { useRouteStore } from '../../store/route.store'
 import MapPoints from './MapPoints'
 
 export default function Map() {

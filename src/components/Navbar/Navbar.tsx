@@ -1,10 +1,9 @@
-// Navbar.tsx
 import { useState } from 'react'
-import { Details } from '../Details'
-import { NavbarForm } from '../NavbarForm'
-import styles from './Navbar.module.scss'
+import { Details } from '../routes/Details'
+import { NavbarForm } from './NavbarForm'
 import { useTheme } from '../../hooks/useTheme'
 import { Moon, Sun } from 'lucide-react'
+import styles from './Navbar.module.scss'
 
 export const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false)
