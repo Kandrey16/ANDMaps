@@ -1,8 +1,7 @@
-// RouteInfoSection.tsx
 import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import { RouteInfo } from './RouteInfo'
-import { useRouteStore } from '../../store/route.store'
+import { useRouteStore } from '../../../store/route.store'
 
 export const RouteInfoSection = () => {
 	const { activeRoute } = useRouteStore()
