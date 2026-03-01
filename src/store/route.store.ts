@@ -6,7 +6,7 @@ import {
 	type RouteLegs,
 } from '../types/route.type'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { fetchRoute } from '../api/routing.service'
+import { fetchRoute } from '../services/routing.service'
 
 interface RouteStore {
 	routes: RouteItem[]
@@ -16,7 +16,7 @@ interface RouteStore {
 	error: string | null
 
 	activeRoute: () => RouteItem | null
-	
+
 	setLoading: (value: boolean) => void
 	setError: (value: string | null) => void
 

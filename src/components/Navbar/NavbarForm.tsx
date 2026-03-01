@@ -1,110 +1,28 @@
-import { useForm } from 'react-hook-form'
 import { useRouteStore } from '../../store/route.store'
-import { RouteProfile } from '../../types/route.type'
-import { parseCoordinates } from '../../utils/parseCoordinates'
-import { geocode } from '../../api/geocode.service'
-import type { LngLat } from '@yandex/ymaps3-types'
-import { detectInputType } from '../../utils/detectInputType'
 import marker_start from '../../assets/marker_start.svg'
 import marker_finish from '../../assets/marker_finish.svg'
 import { CircleQuestionMark, Route } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Answer } from '../common/Answer'
 import { motion } from 'framer-motion'
-import { getCurrentPosition } from '../../utils/getCurrentPosition'
 import { AnswerVariant } from '../../types/answers'
-import { useSearchStore } from '../../store/search.store'
+import { useRouteSubmit } from '../../hooks/useRouteSubmit'
+import { useRouteForm } from '../../hooks/useRouteForm'
 
-type FormData = {
-	pointA: string
-	pointB: string
-}
 export const NavbarForm = () => {
-	const { buildRoute, isLoading, setError } = useRouteStore()
-	const {
-		lastInputA,
-		lastInputB,
-		setDraftPointA,
-		setDraftPointB,
-		setLastInputA,
-		setLastInputB,
-		setHistoryPoints,
-	} = useSearchStore()
+	const { buildRoute } = useRouteStore()
+	const { submit, isLoading } = useRouteSubmit()
+	const { form, getPosition, getCompanyLocation, clearValues } = useRouteForm()
 	const {
 		register,
 		handleSubmit,
-		setValue,
 		formState: { errors },
-	} = useForm<FormData>({
-		defaultValues: {
-			pointA: lastInputA,
-			pointB: lastInputB,
-		},
-		mode: 'onChange',
-	})
+	} = form
 	const [openA, setOpenA] = useState(false)
 	const [openB, setOpenB] = useState(false)
 
-	useEffect(() => {
-		setValue('pointA', lastInputA)
-	}, [lastInputA, setValue])
-
-	useEffect(() => {
-		setValue('pointB', lastInputB)
-	}, [lastInputB, setValue])
-
-	const getPosition = async () => {
-		const coordsString = await getCurrentPosition()
-		if (coordsString) {
-			setValue('pointA', coordsString)
-		}
-	}
-
-	function getCompanyLocation(input: string) {
-		setValue('pointB', input)
-	}
-
-	function clearValues() {
-		setValue('pointA', '')
-		setValue('pointB', '')
-	}
-
-	const onSubmit = async (data: FormData) => {
-		const inputA = data.pointA.trim()
-		const inputB = data.pointB.trim()
-
-		let pointA: LngLat | null = null
-		let pointB: LngLat | null = null
-
-		if (detectInputType(inputA) === 'coordinates') {
-			pointA = parseCoordinates(inputA)
-		} else {
-			setLastInputA(inputA)
-			pointA = await geocode(inputA)
-		}
-		if (detectInputType(inputB) === 'coordinates') {
-			pointB = parseCoordinates(inputB)
-		} else {
-			setLastInputB(inputB)
-			pointB = await geocode(inputB)
-		}
-
-		if (!pointA || !pointB) {
-			setError('Ничего не найдено')
-			return
-		}
-
-		setDraftPointA(pointA)
-		setDraftPointB(pointB)
-		setHistoryPoints(inputA, inputB)
-
-		Object.values(RouteProfile).forEach((profile) => {
-			buildRoute(pointA, pointB, profile)
-		})
-	}
-
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
+		<form onSubmit={handleSubmit(submit)} className='flex flex-col gap-2'>
 			<div className='relative suggest-container'>
 				<div className='flex flex-row w-full items-center gap-2'>
 					<div className='flex flex-1 items-center border rounded-lg px-4 py-2'>
@@ -139,11 +57,7 @@ export const NavbarForm = () => {
 						<img
 							src={marker_finish}
 							className='h-5 w-5 cursor-pointer'
-							onClick={() =>
-								getCompanyLocation(
-									'г. Москва, ВН.ТЕР.Г. Муниципальный округ Бутырский, ул. Новодмитровская, д.2Б'
-								)
-							}
+							onClick={() => getCompanyLocation()}
 						/>
 						<input
 							{...register('pointB', {
