@@ -7,38 +7,8 @@ import {
 } from '../types/route.type'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { fetchRoute } from '../api/routing.service'
-import {
-	DEFAULT_CENTER,
-	DEFAULT_DURATION,
-	DEFAULT_ZOOM,
-} from '../config/map.config'
 
 interface RouteStore {
-	draftPointA: LngLat | null
-	draftPointB: LngLat | null
-
-	lastInputA: string
-	lastInputB: string
-
-	historyPoints: string[]
-
-	maplocation: {
-		center: LngLat
-		zoom: number
-		duration: number
-	}
-	setMapLocation: (center: LngLat, zoom?: number, duration?: number) => void
-
-	setDraftPointA: (point: LngLat) => void
-	setDraftPointB: (point: LngLat) => void
-
-	setLastInputA: (val: string) => void
-	setLastInputB: (val: string) => void
-
-	setHistoryPoints: (valA: string, valB: string) => void
-	selectHistoryRoute: (item: string) => void
-	removeHistoryRoute: (id: number) => void
-
 	routes: RouteItem[]
 	activeRouteId: string | null
 
@@ -46,6 +16,7 @@ interface RouteStore {
 	error: string | null
 
 	activeRoute: () => RouteItem | null
+	
 	setLoading: (value: boolean) => void
 	setError: (value: string | null) => void
 
@@ -54,7 +25,6 @@ interface RouteStore {
 	setActiveRoute: (id: string) => void
 	removeRoute: (id: string) => void
 	clearRoutes: () => void
-	clearHistory: () => void
 }
 
 export type RouteItem = {
@@ -74,32 +44,6 @@ export type RouteItem = {
 export const useRouteStore = create<RouteStore>()(
 	persist(
 		(set, get) => ({
-			draftPointA: null,
-			draftPointB: null,
-
-			lastInputA: '',
-			lastInputB: '',
-
-			historyPoints: [],
-
-			maplocation: {
-				center: DEFAULT_CENTER,
-				zoom: DEFAULT_ZOOM,
-				duration: DEFAULT_DURATION,
-			},
-
-			setMapLocation: (center, zoom = 14, duration = 500) => {
-				set({
-					maplocation: { center, zoom, duration },
-				})
-			},
-
-			setDraftPointA: (point) => set({ draftPointA: point }),
-			setDraftPointB: (point) => set({ draftPointB: point }),
-
-			setLastInputA: (val) => set({ lastInputA: val }),
-			setLastInputB: (val) => set({ lastInputB: val }),
-
 			routes: [],
 			activeRouteId: null,
 			isLoading: false,
@@ -175,42 +119,10 @@ export const useRouteStore = create<RouteStore>()(
 				}))
 			},
 
-			removeHistoryRoute: (id: number) => {
-				set((state) => ({
-					historyPoints: state.historyPoints.filter((_, i) => i !== id),
-				}))
-			},
-
 			clearRoutes: () => {
 				set({
 					routes: [],
 					activeRouteId: null,
-				})
-			},
-
-			setHistoryPoints: (valA: string, valB: string) => {
-				if (!valA.trim() || !valB.trim()) return
-
-				const combined = `${valA.trim()} - ${valB.trim()}`
-
-				set((state) => ({
-					historyPoints: [
-						combined,
-						...state.historyPoints.filter((item) => item !== combined),
-					].slice(0, 10),
-				}))
-			},
-
-			selectHistoryRoute: (item) => {
-				const [pointA, pointB] = item.split(' - ')
-				console.log('Выбрано из истории:', pointA, pointB)
-				get().setLastInputA(pointA)
-				get().setLastInputB(pointB)
-			},
-
-			clearHistory: () => {
-				set({
-					historyPoints: [],
 				})
 			},
 		}),
@@ -218,11 +130,6 @@ export const useRouteStore = create<RouteStore>()(
 			name: 'route-storage',
 			storage: createJSONStorage(() => sessionStorage),
 			partialize: (state) => ({
-				draftPointA: state.draftPointA,
-				draftPointB: state.draftPointB,
-				lastInputA: state.lastInputA,
-				lastInputB: state.lastInputB,
-				historyPoints: state.historyPoints,
 				activeRouteId: state.activeRouteId,
 			}),
 		}

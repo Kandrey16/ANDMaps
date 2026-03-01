@@ -13,12 +13,14 @@ import { Answer } from '../common/Answer'
 import { motion } from 'framer-motion'
 import { getCurrentPosition } from '../../utils/getCurrentPosition'
 import { AnswerVariant } from '../../types/answers'
+import { useSearchStore } from '../../store/search.store'
 
 type FormData = {
 	pointA: string
 	pointB: string
 }
 export const NavbarForm = () => {
+	const { buildRoute, isLoading, setError } = useRouteStore()
 	const {
 		lastInputA,
 		lastInputB,
@@ -27,10 +29,7 @@ export const NavbarForm = () => {
 		setLastInputA,
 		setLastInputB,
 		setHistoryPoints,
-		buildRoute,
-		isLoading,
-		setError,
-	} = useRouteStore()
+	} = useSearchStore()
 	const {
 		register,
 		handleSubmit,

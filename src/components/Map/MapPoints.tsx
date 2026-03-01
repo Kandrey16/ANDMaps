@@ -5,10 +5,12 @@ import marker_finish from '../../assets/marker_finish.svg'
 import { AnimatedObject } from '../common/AnimatedObject'
 import { DEFAULT_CAR_ANIMATION_DURATION } from '../../config/map.config'
 import { getIconByProfile } from '../../utils/getIconByProfile'
+import { useSearchStore } from '../../store/search.store'
 
 export default function MapPoints() {
-	const { draftPointA, draftPointB, routes, activeRouteId } = useRouteStore()
-
+	const { routes, activeRouteId } = useRouteStore()
+	const { draftPointA, draftPointB } = useSearchStore()
+	
 	return (
 		<>
 			{draftPointA && (

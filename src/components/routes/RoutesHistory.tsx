@@ -1,8 +1,8 @@
 // HistoryRoutes.tsx
-import { useRouteStore } from '../../store/route.store'
 import { useState } from 'react'
 import { ChevronsDown, ChevronsUp, History, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useSearchStore } from '../../store/search.store'
 
 export const RoutesHistory = () => {
 	const {
@@ -10,7 +10,7 @@ export const RoutesHistory = () => {
 		historyPoints,
 		removeHistoryRoute,
 		selectHistoryRoute,
-	} = useRouteStore()
+	} = useSearchStore()
 	const [open, setOpen] = useState(false)
 
 	if (!historyPoints?.length) return null

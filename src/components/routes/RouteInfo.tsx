@@ -1,10 +1,10 @@
 import { X } from 'lucide-react'
 import type { RouteLegs } from '../../types/route.type'
-import { useRouteStore } from '../../store/route.store'
 import type { LngLat } from '@yandex/ymaps3-types'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useMapStore } from '../../store/map.store'
 
 type RouteInfoProps = {
 	data: RouteLegs | null
@@ -13,7 +13,7 @@ type RouteInfoProps = {
 }
 
 export const RouteInfo = ({ data, isOpen, onClose }: RouteInfoProps) => {
-	const { setMapLocation } = useRouteStore()
+	const { setMapLocation } = useMapStore()
 	const [active, setActive] = useState(0)
 
 	function setLocation(coords: LngLat) {
