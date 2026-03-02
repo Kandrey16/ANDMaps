@@ -1,4 +1,4 @@
-import styles from './Navbar.module.scss'
+import styles from '../Navbar.module.scss'
 
 type Props = {
   isOpen: boolean
