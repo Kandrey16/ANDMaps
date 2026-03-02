@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { RouteDetails } from '../routes/RouteDetails'
 import { NavbarForm } from './NavbarForm'
-import { NavbarHeader } from './NavbarHeader'
-import { NavbarSheet } from './NavbarSheet'
+import { NavbarHeader } from './ui/NavbarHeader'
+import { NavbarSheet } from './ui/NavbarSheet'
 
 export const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false)

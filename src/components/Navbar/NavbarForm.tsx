@@ -4,7 +4,7 @@ import { AnswerVariant } from '../../types/answers'
 import { useRouteSubmit } from '../../hooks/useRouteSubmit'
 import { useRouteForm } from '../../hooks/useRouteForm'
 import { RouteInputField } from './RouteInputField'
-import { Button } from '../common/Button'
+import { Button } from '../ui/Button'
 import { Route } from 'lucide-react'
 
 export const NavbarForm = () => {

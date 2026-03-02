@@ -1,7 +1,7 @@
 import type { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 import type { AnswerVariant } from '../../types/answers'
 import { useState } from 'react'
-import { Answer } from '../common/Answer'
+import { Answer } from '../ui/Answer'
 import { CircleQuestionMark } from 'lucide-react'
 
 type RouteInputFieldProps = {

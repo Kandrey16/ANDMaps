@@ -3,7 +3,7 @@ import { ChevronsDown, ChevronsUp, History } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchStore } from '../../../store/search.store'
 import { RoutesHistoryList } from './RoutesHistoryList'
-import { Button } from '../../common/Button'
+import { Button } from '../../ui/Button'
 
 export const RoutesHistory = () => {
 	const {
