@@ -3,7 +3,7 @@ import { ChevronsDown, ChevronsUp, History } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchStore } from '../../../store/search.store'
 import { RoutesHistoryList } from './RoutesHistoryList'
-import { RoutesHistoryButton } from './RoutesHistoryButton'
+import { Button } from '../../common/Button'
 
 export const RoutesHistory = () => {
 	const {
@@ -43,8 +43,9 @@ export const RoutesHistory = () => {
 							onSelect={selectHistoryRoute}
 							onRemove={removeHistoryRoute}
 						/>
-
-						<RoutesHistoryButton onClear={clearHistory} />
+						<Button variant='danger' size='md' fullWidth onClick={clearHistory}>
+							Очистить историю
+						</Button>
 					</motion.div>
 				)}
 			</AnimatePresence>

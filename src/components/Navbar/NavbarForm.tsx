@@ -4,7 +4,8 @@ import { AnswerVariant } from '../../types/answers'
 import { useRouteSubmit } from '../../hooks/useRouteSubmit'
 import { useRouteForm } from '../../hooks/useRouteForm'
 import { RouteInputField } from './RouteInputField'
-import { RouteSubmitButton } from './RouteSubmitButton'
+import { Button } from '../common/Button'
+import { Route } from 'lucide-react'
 
 export const NavbarForm = () => {
 	const { submit, isLoading } = useRouteSubmit()
@@ -39,15 +40,21 @@ export const NavbarForm = () => {
 				onIconClick={getCompanyLocation}
 				answerVariant={AnswerVariant.B}
 			/>
-
 			<div
 				className='flex justify-end w-full px-2'
 				onClick={() => clearValues()}
 			>
 				<p className='hover:text-white'>Сбросить</p>
 			</div>
-
-			<RouteSubmitButton isLoading={isLoading} />
+			<Button
+				type='submit'
+				loading={isLoading}
+				icon={<Route size={18} />}
+				fullWidth
+				animated
+			>
+				{isLoading ? 'Строим маршрут...' : 'Построить маршрут'}
+			</Button>
 		</form>
 	)
 }
