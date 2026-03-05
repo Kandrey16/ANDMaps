@@ -1,19 +1,16 @@
-import {
-	getCurrentPositionByIP,
-	getGPSPosition,
-} from '../services/location.service'
+import { getCurrentPositionByIP, getGPSPosition } from '../services/location.service'
 
 export async function getCurrentPosition() {
-	let coords = await getGPSPosition()
+  let coords = await getGPSPosition()
 
-	if (!coords) {
-		coords = await getCurrentPositionByIP()
-	}
+  if (!coords) {
+    coords = await getCurrentPositionByIP()
+  }
 
-	if (coords) {
-		return `${coords.lat}, ${coords.lon}`
-	}
+  if (coords) {
+    return `${coords.lat}, ${coords.lon}`
+  }
 
-	alert('Не удалось определить ваше местоположение')
-	return undefined
+  alert('Не удалось определить ваше местоположение')
+  return undefined
 }

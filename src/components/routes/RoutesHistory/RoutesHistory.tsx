@@ -1,9 +1,10 @@
-import { useState } from 'react'
-import { ChevronsDown, ChevronsUp, History } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronsDown, ChevronsUp, History } from 'lucide-react'
+import { useState } from 'react'
+
 import { useSearchStore } from '../../../store/search.store'
-import { RoutesHistoryList } from './RoutesHistoryList'
 import { Button } from '../../ui/Button'
+import { RoutesHistoryList } from './RoutesHistoryList'
 
 export const RoutesHistory = () => {
 	const {

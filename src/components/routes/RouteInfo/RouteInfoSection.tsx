@@ -1,7 +1,8 @@
-import { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'lucide-react'
-import { RouteInfo } from './RouteInfo'
+import { useState } from 'react'
+
 import { useRouteStore } from '../../../store/route.store'
+import { RouteInfo } from './RouteInfo'
 
 export const RouteInfoSection = () => {
 	const { activeRoute } = useRouteStore()

@@ -1,5 +1,5 @@
-import { X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { X } from 'lucide-react'
 
 type RouteInfoPanelProps = {
 	isOpen: boolean

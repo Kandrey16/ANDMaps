@@ -15,7 +15,7 @@ export type GeoJSONString = {
 export enum RouteProfile {
 	DRIVING = 'driving',
 	WALKING = 'walking',
-	CYCLING = 'cycling',
+	CYCLING = 'cycling'
 }
 
 export type OSRMResponse = {
@@ -39,4 +39,3 @@ export type RouteLegs = {
 		duration: number
 	}[]
 }
-

@@ -1,4 +1,4 @@
-import styles from '../Navbar.module.scss'
+import styles from '../Navbar.module.css'
 
 type Props = {
   isOpen: boolean
@@ -9,19 +9,10 @@ type Props = {
 export const NavbarSheet = ({ isOpen, onToggle, children }: Props) => {
   return (
     <div
-      className={`
-        fixed bottom-0 left-0 right-0 z-50
-        bg-(--bg-primary)
-        shadow-2xl rounded-t-3xl
-        transition-transform duration-300 ease-in-out
-        ${isOpen ? styles.open : styles.closed}
-      `}
+      className={`fixed right-0 bottom-0 left-0 z-50 rounded-t-3xl bg-(--bg-primary) shadow-2xl transition-transform duration-300 ease-in-out ${isOpen ? styles.open : styles.closed} `}
     >
-      <div
-        className='h-10 flex justify-center items-center cursor-pointer'
-        onClick={onToggle}
-      >
-        <div className='w-12 h-1.5 bg-gray-400 rounded-full' />
+      <div className="flex h-10 cursor-pointer items-center justify-center" onClick={onToggle}>
+        <div className="h-1.5 w-12 rounded-full bg-gray-400" />
       </div>
 
       {children}

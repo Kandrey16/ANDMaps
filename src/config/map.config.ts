@@ -6,7 +6,7 @@ export const DEFAULT_DURATION = 500
 export const DEFAULT_CAR_ANIMATION_DURATION = 20000
 
 export const LOCATION: YMapLocationRequest = {
-	center: DEFAULT_CENTER,
-	zoom: DEFAULT_ZOOM,
-	duration: DEFAULT_DURATION,
+  center: DEFAULT_CENTER,
+  zoom: DEFAULT_ZOOM,
+  duration: DEFAULT_DURATION,
 }
